@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import VueApexCharts from "vue3-apexcharts";
+import type { ApexOptions } from "apexcharts";
 import { TrendingUp } from "lucide-vue-next";
 
 interface Props {
@@ -65,7 +66,7 @@ const series = computed(() => [
   },
 ]);
 
-const chartOptions = computed(() => ({
+const chartOptions = computed<ApexOptions>(() => ({
   chart: {
     toolbar: {
       show: false,
