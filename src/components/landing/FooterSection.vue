@@ -3,8 +3,9 @@
 
 <template>
   <footer class="bg-[#2F0819] w-full pt-[230px] pb-10 px-10 text-white relative z-0">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-16 mb-16">
+    <div class="w-full border-t border-[#53092A] mb-[64px]"></div>
+    <div class="mx-auto">
+      <div class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-16 mb-16">
         <!-- Brand & Subtitle -->
         <div class="lg:col-span-2">
           <h3 class="text-[32px] font-bold mb-4 tracking-tight">NombaLens</h3>
@@ -52,7 +53,8 @@
       </div>
 
       <!-- Copyright -->
-      <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="w-full border-t border-[#53092A] mb-[32px]"></div>
+      <div class="max-w-7xl pt-0 flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-white/50 text-[14px]">© 2026 NombaLens. All rights reserved.</p>
         <div class="flex gap-6 text-white/50 text-[14px]">
           <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
