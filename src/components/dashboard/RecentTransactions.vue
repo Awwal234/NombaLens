@@ -19,10 +19,12 @@
 
     <!-- List -->
     <div>
-      <div v-if="!transactions || transactions.length === 0" class="flex flex-col items-center justify-center p-12 text-center">
+      <div v-if="!transactions || transactions.length === 0"
+        class="flex flex-col items-center justify-center p-12 text-center">
         <div class="flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100 mb-4">
           <svg class="h-8 w-8 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
           </svg>
         </div>
         <h3 class="text-lg font-medium text-neutral-900">No transactions yet</h3>
@@ -70,9 +72,11 @@
         <!-- Right -->
         <div class="text-left md:text-right flex flex-col items-start md:items-end">
 
-          <span class="rounded-full px-3 py-1 text-[11px] uppercase tracking-wider font-bold transition-transform group-hover:scale-105" :class="transaction.status === 'success'
-            ? 'bg-green-50 text-green-700 border border-green-200/50'
-            : 'bg-red-50 text-red-700 border border-red-200/50'">
+          <span
+            class="rounded-full px-3 py-1 text-[11px] uppercase tracking-wider font-bold transition-transform group-hover:scale-105"
+            :class="transaction.status === 'success'
+              ? 'bg-green-50 text-green-700 border border-green-200/50'
+              : 'bg-red-50 text-red-700 border border-red-200/50'">
             {{ transaction.status }}
           </span>
 
@@ -88,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-interface Transaction {
+export interface Transaction {
   id: number
   customer: string
   amount: string

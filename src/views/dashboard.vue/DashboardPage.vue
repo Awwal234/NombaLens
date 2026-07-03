@@ -67,6 +67,7 @@ import { analyticsService } from "@/services/analytics";
 
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import HeroCard from "@/components/dashboard/HeroCard.vue";
+import type { Transaction } from "@/components/dashboard/RecentTransactions.vue";
 
 import {
   Wallet,
@@ -118,7 +119,7 @@ onMounted(async () => {
 
 
 //
-const transactions = [
+const transactions: Transaction[] = [
   {
     id: 1,
     customer: "John Doe",
