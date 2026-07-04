@@ -27,7 +27,7 @@
 
       <div class="flex rounded-2xl bg-[#F7F4F2] p-1">
         <button v-for="item in filters" :key="item" @click="activeFilter = item"
-          class="rounded-xl px-4 py-2 text-sm font-medium transition" :class="activeFilter === item
+          class="rounded-xl cursor-pointer px-4 py-2 text-sm font-medium transition" :class="activeFilter === item
             ? 'bg-white shadow'
             : 'text-neutral-500'
             ">

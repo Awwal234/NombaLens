@@ -24,7 +24,7 @@
 
         <PhoneInput label="Phone Number" v-model="form.phone" />
 
-        <PinInput label="Enter PIN" :length="4" v-model="form.pin" />
+        <PinInput label="Enter PIN" :length="6" v-model="form.pin" />
 
         <!-- Error state -->
         <p v-if="error" class="text-sm font-medium text-red-500 text-center">
@@ -105,7 +105,7 @@ const handleLogin = async () => {
 
   isLoading.value = true
   try {
-    const res = await authStore.login(form.phone, form.pin)
+    const res = await authStore.login(`${0}${form.phone}`, form.pin)
     if (res.success) {
       router.push('/dashboard')
     } else {

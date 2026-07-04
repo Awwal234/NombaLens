@@ -6,9 +6,10 @@
 
     <div v-else>
       <HeroCard :name="authStore.merchant?.businessName || 'Merchant'"
-        :todayRevenue="formatCurrency(summaryData.todayRevenue)"
+        :accountNumber="authStore.merchant?.accountNumber || ''" :accountName="authStore.merchant?.accountName || ''"
+        :bankName="authStore.merchant?.bankName || ''" :todayRevenue="formatCurrency(summaryData.todayRevenue)"
         :health="healthData.score === 'Excellent' ? 95 : healthData.score === 'Good' ? 80 : healthData.score === 'Average' ? 50 : 20"
-        :summary="`Revenue has shifted by ${summaryData.growth}% recently. View AI Assistant for more details.`" />
+        :summary="insightsData[0].message" />
 
       <!--  -->
       <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4 mt-16 mb-16">
@@ -55,7 +56,9 @@
         :insights="insightsData.map(i => ({ icon: '💡', title: i.type.toUpperCase(), description: i.message })).slice(0, 3)" />
       <!--  -->
       <div class="mt-16"></div>
-      <RecentTransactions :transactions="transactions" />
+      <div class="hidden">
+        <RecentTransactions :transactions="transactions" />
+      </div>
     </div>
   </DashboardLayout>
 </template>
@@ -105,7 +108,7 @@ onMounted(async () => {
 
     summaryData.value = summaryRes || {};
     healthData.value = healthRes || {};
-    insightsData.value = insightsRes?.data || [];
+    insightsData.value = insightsRes || [];
 
     if (!authStore.merchant) {
       await authStore.fetchProfile().catch(() => { });

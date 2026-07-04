@@ -23,7 +23,68 @@
           {{ summary }}
         </p>
 
-        <div class="mt-8 flex flex-wrap gap-4">
+        <!-- display account number, account name and bank name -->
+        <div class="mt-6 flex flex-wrap items-center gap-4">
+
+          <!-- Account Number -->
+          <div
+            class="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+              🏦
+            </div>
+
+            <div>
+              <p class="text-xs text-white/60">
+                Account Number
+              </p>
+
+              <p class="font-semibold tracking-wider">
+                {{ accountNumber }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Account Name -->
+          <div
+            class="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+              👤
+            </div>
+
+            <div>
+              <p class="text-xs text-white/60">
+                Account Name
+              </p>
+
+              <p class="font-semibold">
+                {{ accountName }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Bank -->
+          <div
+            class="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+              🏛
+            </div>
+
+            <div>
+              <p class="text-xs text-white/60">
+                Bank
+              </p>
+
+              <p class="font-semibold">
+                {{ bankName }}
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <!--  -->
+
+
+        <div class="mt-8 flex flex-wrap gap-4 hidden">
 
           <button class="rounded-2xl bg-white px-6 py-3 font-semibold text-[#7A003C] transition hover:scale-[1.03]">
             Ask AI
@@ -99,6 +160,9 @@ interface Props {
   todayRevenue?: string;
   summary?: string;
   health?: number;
+  accountNumber?: string;
+  accountName?: string;
+  bankName?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {

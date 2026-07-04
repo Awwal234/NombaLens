@@ -22,7 +22,7 @@ const goWatchDemo = (e: Event) => {
       revenue growth.
     </div>
     <!-- cta buttons -->
-    <div @click="linkTo('/register')" class="w-fit mx-auto flex items-center space-x-[16px] mb-[99px]">
+    <div @click="linkTo('/login')" class="w-fit mx-auto flex items-center space-x-[16px] mb-[99px]">
       <div class="text-[#fff] font-medium text-[15px] py-[12.3px] px-[25px] bg-[#960145] rounded-[12px] cursor-pointer">
         Get started
       </div>

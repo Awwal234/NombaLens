@@ -28,9 +28,9 @@
 
         <BaseInput label="Nomba Sub Account ID" placeholder="SUB_XXXXXXXX" v-model="form.subAccountId" />
 
-        <PinInput label="Create PIN" :length="4" v-model="form.pin" />
+        <PinInput label="Create PIN" :length="6" v-model="form.pin" />
 
-        <PinInput label="Confirm PIN" :length="4" v-model="form.confirmPin" />
+        <PinInput label="Confirm PIN" :length="6" v-model="form.confirmPin" />
 
         <!-- Error state -->
         <p v-if="error" class="text-sm font-medium text-red-500 text-center">
@@ -124,7 +124,7 @@ const handleRegister = async () => {
   try {
     const res = await authStore.register({
       businessName: form.businessName,
-      phone: form.phone,
+      phone: `${0}${form.phone}`,
       subAccountId: form.subAccountId,
       pin: form.pin
     });

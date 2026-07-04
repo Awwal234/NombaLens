@@ -13,7 +13,7 @@ const { linkTo } = useLinkTo();
           Take the first step in transforming your data into business intelligence
         </h2>
 
-        <button @click="linkTo('/register')"
+        <button @click="linkTo('/login')"
           class="mt-10 cursor-pointer mx-auto block rounded-xl bg-[#980045] px-8 py-3.5 text-[16px] font-medium transition hover:bg-[#b50052]">
           Get started
         </button>

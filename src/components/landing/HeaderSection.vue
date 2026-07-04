@@ -11,7 +11,7 @@ const { linkTo } = useLinkTo();
       NombaLens
     </div>
 
-    <div @click="linkTo('/register')"
+    <div @click="linkTo('/login')"
       class="text-[#fff] font-bold text-[15px] py-[12.3px] px-[17px] bg-[#960145] rounded-[12px] cursor-pointer">
       Get started
     </div>

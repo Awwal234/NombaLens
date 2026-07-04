@@ -76,17 +76,13 @@
 
       <div class="mt-8 flex flex-wrap gap-4">
 
-        <button 
-          @click="$router.push('/summary')"
-          class="rounded-2xl bg-[#6D5EF7] px-6 py-3 font-semibold text-white transition hover:scale-[1.02] shadow-sm shadow-[#6D5EF7]/20"
-        >
+        <button @click="$router.push('/summary')"
+          class="rounded-2xl cursor-pointer bg-[#6D5EF7] px-6 py-3 font-semibold text-white transition hover:scale-[1.02] shadow-sm shadow-[#6D5EF7]/20">
           Ask AI
         </button>
 
-        <button
-          @click="$router.push('/summary')"
-          class="rounded-2xl border border-neutral-200 bg-white px-6 py-3 font-semibold text-neutral-700 transition hover:bg-neutral-50 shadow-sm"
-        >
+        <button @click="$router.push('/summary')"
+          class="rounded-2xl cursor-pointer border border-neutral-200 bg-white px-6 py-3 font-semibold text-neutral-700 transition hover:bg-neutral-50 shadow-sm">
           View Full Report
         </button>
 

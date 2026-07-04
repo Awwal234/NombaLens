@@ -47,7 +47,7 @@
     </div>
 
     <button 
-      @click="$emit('generate')" 
+      @click="handleGenerate" 
       class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-medium py-2.5 px-8 rounded-xl shadow-md shadow-purple-500/20 transition-all active:scale-[0.98] flex items-center gap-2 whitespace-nowrap"
       :disabled="isGenerating"
     >
@@ -58,9 +58,23 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 defineProps<{
   isGenerating?: boolean
 }>()
 
-defineEmits(['generate'])
+const emit = defineEmits(['generate'])
+
+const dateRange = ref('Last 30 Days')
+const summaryType = ref('Financial Health')
+const language = ref('English')
+
+function handleGenerate() {
+  emit('generate', {
+    dateRange: dateRange.value,
+    summaryType: summaryType.value,
+    language: language.value,
+  })
+}
 </script>

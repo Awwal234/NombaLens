@@ -51,31 +51,21 @@
     </div>
 
     <!-- Result State -->
-    <div v-else-if="state === 'result'" class="animate-fade-in flex flex-col h-full">
-      <div class="flex items-center gap-3 mb-6">
-        <span class="text-2xl">✨</span>
-        <h2 class="text-2xl font-bold text-gray-800">Financial Summary</h2>
+    <div v-else-if="state === 'result'" class="animate-fade-in flex flex-col gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg">
+          <h4 class="text-indigo-100 text-sm font-medium mb-1">Today's Revenue</h4>
+          <div class="text-3xl font-bold">${{ summaryData?.todayRevenue.toLocaleString() }}</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <h4 class="text-gray-500 text-sm font-medium mb-1">Total Transactions</h4>
+          <div class="text-3xl font-bold text-gray-900">{{ summaryData?.totalTransactions }}</div>
+        </div>
       </div>
-
-      <div class="prose prose-purple max-w-none mb-8 text-gray-700 leading-relaxed text-lg">
-        <p>Revenue increased by <strong class="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">14%</strong>.</p>
-        <p>Expenses decreased by <strong class="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">6%</strong>.</p>
-        <p>Cashflow remains healthy.</p>
-        <p>Average customer spend increased.</p>
-      </div>
-
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Insights</h3>
-        <InsightList />
-      </div>
-
-      <div class="mb-8">
-        <RecommendationCard />
-      </div>
-
-      <div class="mt-auto pt-6 border-t border-gray-100">
-        <ActionButtons @regenerate="$emit('generate')" />
-      </div>
+      
+      <InsightList :insights="insights" />
+      <RecommendationCard />
+      <ActionButtons @generate="$emit('generate')" />
     </div>
 
   </div>
@@ -88,9 +78,26 @@ import ActionButtons from './ActionButtons.vue'
 
 defineProps<{
   state: 'empty' | 'loading' | 'result'
+  summaryData?: SummaryData
+  insights?: InsightItem[]
 }>()
 
 defineEmits(['generate'])
+
+interface SummaryData {
+  todayRevenue: number
+  weeklyRevenue: number
+  monthlyRevenue: number
+  growth: number
+  totalTransactions: number
+}
+
+interface InsightItem {
+  merchantId: string
+  type: string
+  title: string
+  message: string
+}
 </script>
 
 <style scoped>

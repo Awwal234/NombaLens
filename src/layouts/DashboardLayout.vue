@@ -7,7 +7,7 @@
 
     <!-- Sidebar -->
     <aside :class="[
-      'fixed left-0 top-0 z-50 flex h-screen w-[280px] flex-col border-r border-[#ECE6E2] bg-white transition-transform duration-300',
+      'fixed left-0 top-0 z-50 flex h-[100%] w-[280px] flex-col border-r border-[#ECE6E2] bg-white transition-transform duration-300',
       sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
     ]">
       <!-- Logo -->
@@ -39,7 +39,8 @@
       <!-- Bottom -->
 
       <div class="border-t border-[#ECE6E2] p-5">
-        <button @click="handleLogout" class="flex w-full items-center gap-4 rounded-2xl px-4 py-3 text-red-500 transition hover:bg-red-50">
+        <button @click="handleLogout"
+          class="flex w-full items-center gap-4 rounded-2xl px-4 py-3 text-red-500 transition hover:bg-red-50">
           <LogOut :size="20" />
 
           Logout
@@ -66,7 +67,7 @@
           <!-- Search -->
 
           <div
-            class="hidden md:flex h-12 w-[360px] items-center gap-3 rounded-2xl border border-[#ECE6E2] bg-white px-4">
+            class="hidden md:hidden h-12 w-[360px] items-center gap-3 rounded-2xl border border-[#ECE6E2] bg-white px-4">
             <Search :size="18" class="text-neutral-400" />
 
             <input placeholder="Search..." class="flex-1 bg-transparent outline-none" />
@@ -88,17 +89,19 @@
 
             <div>
 
-              <p class="text-sm font-semibold">
-                Muh-Awwal
+              <p class="text-sm font-semibold text-left">
+                {{ authStore.merchant?.businessName }}
               </p>
 
-              <p class="text-xs text-neutral-500">
+              <p class="text-xs text-neutral-500 text-left">
                 Administrator
               </p>
 
             </div>
 
-            <img src="https://ui-avatars.com/api/?background=7A003C&color=fff&name=M" class="h-10 w-10 rounded-xl" />
+            <img
+              :src="`https://ui-avatars.com/api/?background=7A003C&color=fff&name=${authStore.merchant?.businessName}`"
+              class="h-10 w-10 rounded-xl" />
 
           </button>
 
@@ -117,7 +120,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 
@@ -157,6 +160,12 @@ const handleLogout = async () => {
   await authStore.logout();
   router.push('/login');
 };
+
+onMounted(async () => {
+  if (!authStore.merchant) {
+    await authStore.fetchProfile().catch(() => { });
+  }
+})
 </script>
 
 <style scoped>
