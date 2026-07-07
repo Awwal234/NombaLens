@@ -2,63 +2,57 @@
 </script>
 
 <template>
-  <footer class="bg-[#2F0819] w-full pt-[230px] pb-10 px-10 text-white relative z-0">
-    <div class="w-full border-t border-[#53092A] mb-[64px]"></div>
+  <footer class="relative z-0 w-full bg-[#2F0819] px-4 pb-10 pt-[180px] text-white sm:px-6 lg:px-10 lg:pt-[230px]">
+    <div class="mb-[64px] w-full border-t border-[#53092A]"></div>
     <div class="mx-auto">
-      <div class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-16 mb-16">
-        <!-- Brand & Subtitle -->
+      <div class="mb-16 grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5 lg:gap-16">
         <div class="lg:col-span-2">
-          <h3 class="text-[32px] font-bold mb-4 tracking-tight">NombaLens</h3>
-          <p class="text-white/70 text-[16px] leading-relaxed max-w-[360px]">
-            Turning Virtual Accounts into Business Intelligence
-            Infrastructure.
+          <h3 class="mb-4 text-[32px] font-bold tracking-tight">NombaLens</h3>
+          <p class="max-w-[360px] text-[16px] leading-relaxed text-white/70">
+            Financial copilot for Nigerian SMEs using Nomba payment infrastructure
           </p>
         </div>
 
-        <!-- Product -->
         <div>
-          <h4 class="font-semibold text-lg mb-6 text-[#FBF3EC]">Product</h4>
+          <h4 class="mb-6 text-lg font-semibold text-[#FBF3EC]">Product</h4>
           <ul class="space-y-4">
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Features</a></li>
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Pricing</a></li>
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Integrations</a></li>
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Changelog</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Features</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Pricing</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Integrations</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Changelog</a></li>
           </ul>
         </div>
 
-        <!-- Resources -->
         <div>
-          <h4 class="font-semibold text-lg mb-6 text-[#FBF3EC]">Resources</h4>
+          <h4 class="mb-6 text-lg font-semibold text-[#FBF3EC]">Resources</h4>
           <ul class="space-y-4">
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Documentation</a></li>
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Blog</a></li>
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Help Center</a></li>
-            <li><a href="#" class="text-white/70 hover:text-white transition-colors text-[15px]">Community</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Documentation</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Blog</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Help Center</a></li>
+            <li><a href="#" class="text-[15px] text-white/70 transition-colors hover:text-white">Community</a></li>
           </ul>
         </div>
 
-        <!-- Stay in the loop -->
         <div>
-          <h4 class="font-semibold text-lg mb-6 text-[#FBF3EC]">Stay in the loop</h4>
-          <p class="text-white/70 text-[14px] mb-4">Join our newsletter for the latest updates.</p>
-          <div class="flex">
+          <h4 class="mb-6 text-lg font-semibold text-[#FBF3EC]">Stay in the loop</h4>
+          <p class="mb-4 text-[14px] text-white/70">Join our newsletter for the latest updates.</p>
+          <div class="flex flex-row">
             <input type="email" placeholder="Enter your email"
-              class="w-full bg-white/10 text-white placeholder:text-white/50 px-4 py-3 rounded-l-xl outline-none focus:ring-1 focus:ring-[#980045] text-[15px]" />
+              class="w-full rounded-l-xl border-0 bg-white/10 px-4 py-3 text-[15px] text-white outline-none placeholder:text-white/50 focus:ring-1 focus:ring-[#980045]" />
             <button
-              class="bg-[#980045] cursor-pointer hover:bg-[#b50052] transition-colors px-5 py-3 rounded-r-xl text-[15px] font-medium">
+              class="cursor-pointer rounded-r-xl bg-[#980045] px-5 py-3 text-[15px] font-medium transition-colors hover:bg-[#b50052]">
               Subscribe
             </button>
           </div>
         </div>
       </div>
 
-      <!-- Copyright -->
-      <div class="w-full border-t border-[#53092A] mb-[32px]"></div>
-      <div class="max-w-7xl pt-0 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-white/50 text-[14px]">© 2026 NombaLens. All rights reserved.</p>
-        <div class="flex gap-6 text-white/50 text-[14px]">
-          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+      <div class="mb-[32px] w-full border-t border-[#53092A]"></div>
+      <div class="flex max-w-7xl flex-col items-center justify-between gap-4 pt-0 md:flex-row">
+        <p class="text-[14px] text-white/50">© 2026 NombaLens. All rights reserved.</p>
+        <div class="flex gap-6 text-[14px] text-white/50">
+          <a href="#" class="transition-colors hover:text-white">Privacy Policy</a>
+          <a href="#" class="transition-colors hover:text-white">Terms of Service</a>
         </div>
       </div>
     </div>

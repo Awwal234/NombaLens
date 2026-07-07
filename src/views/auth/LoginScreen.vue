@@ -62,14 +62,14 @@
 
     </BaseCard>
 
-    <p class="mt-8 text-center text-sm text-neutral-500">
+    <!-- <p class="mt-8 text-center text-sm text-neutral-500">
       New to NombaLens?
 
       <RouterLink to="/register" class="font-semibold text-[#7A003C] hover:underline">
         Create workspace
       </RouterLink>
 
-    </p>
+    </p> -->
 
   </AuthLayout>
 </template>

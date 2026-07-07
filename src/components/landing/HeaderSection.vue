@@ -5,15 +5,16 @@ const { linkTo } = useLinkTo();
 </script>
 
 <template>
-  <div
-    class="w-full z-[100] fixed top-0 left-0 bg-[#fff] border-b border-[#F2F1F1] py-[21px] px-[40px] flex items-center justify-between">
-    <div class="w-[154px] h-[24.83px] text-[#000] font-bold text-[15px]">
-      NombaLens
-    </div>
+  <header class="fixed left-0 top-0 z-[100] w-full border-b border-[#F2F1F1] bg-[#fff]/95 backdrop-blur-sm">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div class="text-base font-bold text-[#000] sm:text-[15px]">
+        NombaLens
+      </div>
 
-    <div @click="linkTo('/login')"
-      class="text-[#fff] font-bold text-[15px] py-[12.3px] px-[17px] bg-[#960145] rounded-[12px] cursor-pointer">
-      Get started
+      <button @click="linkTo('/login')"
+        class="cursor-pointer rounded-[12px] bg-[#960145] px-4 py-2.5 text-sm font-bold text-[#fff] transition hover:bg-[#b50052] sm:px-[17px] sm:py-[12.3px] sm:text-[15px]">
+        Get started
+      </button>
     </div>
-  </div>
+  </header>
 </template>
