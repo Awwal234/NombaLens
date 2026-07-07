@@ -21,7 +21,7 @@ const goWatchDemo = (e: Event) => {
       growth.
     </div>
 
-    <div class="mx-auto mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row lg:mb-[99px]">
+    <div class="mx-auto mb-12 flex flex-row items-center justify-center gap-4 sm:flex-row lg:mb-[99px]">
       <button @click="linkTo('/login')"
         class="cursor-pointer rounded-[12px] bg-[#960145] px-6 py-3 text-[15px] font-medium text-[#fff] transition hover:bg-[#b50052]">
         Get started
