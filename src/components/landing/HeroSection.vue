@@ -34,7 +34,8 @@ const goWatchDemo = (e: Event) => {
 
     <div class="mx-auto mb-16 max-w-[1000px] px-0 sm:px-4 lg:mb-[96px] lg:px-[40px]">
       <div class="overflow-hidden rounded-[20px] border border-[#E8E2EE] shadow-2xl">
-        <img src="/landing/heroimg.png" class="block h-auto w-full object-cover" alt="NombaLens Dashboard Preview" />
+        <img src="/landing/productsample.png" class="block h-auto w-full object-cover"
+          alt="NombaLens Dashboard Preview" />
       </div>
     </div>
 

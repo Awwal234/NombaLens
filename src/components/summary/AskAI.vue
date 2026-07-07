@@ -2,7 +2,8 @@
   <div class="bg-white rounded-[24px] border border-[var(--au-border)] p-6 md:p-8 flex flex-col mt-8 shadow-sm">
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-[var(--au-accent-light)] text-[var(--au-accent)] rounded-full flex items-center justify-center text-xl">
+        <div
+          class="w-10 h-10 bg-[var(--au-accent-light)] text-[var(--au-accent)] rounded-full flex items-center justify-center text-xl">
           💬
         </div>
         <div>
@@ -66,8 +67,10 @@
         <div class="bg-neutral-50 border border-neutral-100 rounded-[20px] rounded-tl-sm px-5 py-4">
           <div class="flex gap-1.5">
             <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce"></div>
-            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
-            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce" style="animation-delay: 0.15s">
+            </div>
+            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce" style="animation-delay: 0.3s">
+            </div>
           </div>
         </div>
       </div>
@@ -99,13 +102,13 @@
     </form>
 
     <div class="mt-3 flex flex-wrap gap-2">
-      <button @click="setInput('What are my top selling items?')"
+      <button @click="setInput('how is my business doing today?')"
         class="text-xs bg-neutral-50 hover:bg-[var(--au-accent-light)] text-neutral-600 hover:text-[var(--au-accent)] border border-neutral-100 px-3 py-1.5 rounded-full transition-colors font-bold">
-        What are my top selling items?
+        how is my business doing today?
       </button>
-      <button @click="setInput('How can I reduce expenses?')"
+      <button @click="setInput('what can my business do to improve?')"
         class="text-xs bg-neutral-50 hover:bg-[var(--au-accent-light)] text-neutral-600 hover:text-[var(--au-accent)] border border-neutral-100 px-3 py-1.5 rounded-full transition-colors font-bold">
-        How can I reduce expenses?
+        what can my business do to improve?
       </button>
     </div>
   </div>
