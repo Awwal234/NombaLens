@@ -21,19 +21,29 @@ describe('transactionsService', () => {
               eventType: 'WEBHOOK_BILL_PAYMENT',
               narration: 'Payment',
               transactionDate: '2026-07-07T12:00:00.000Z',
-              customer: { name: 'Jane Doe' },
+              customer: {
+                name: 'Jane Doe',
+              },
             },
           ],
-          pagination: { total: 1, page: 1, limit: 20, totalPages: 1 },
+          pagination: {
+            total: 1,
+            page: 1,
+            limit: 20,
+            totalPages: 1,
+          },
         }),
       }),
     )
 
-    const result = await transactionsService.getTransactions({ page: 1, limit: 20 })
+    const result = await transactionsService.getTransactions({
+      page: 1,
+      limit: 20,
+    })
 
     expect(result.transactions).toHaveLength(1)
     expect(result.pagination.total).toBe(1)
-    expect(result.transactions[0].direction).toBe('IN')
+    expect(result.transactions[0]!.direction).toBe('IN')
   })
 
   it('supports nested transaction payloads', async () => {
@@ -52,19 +62,29 @@ describe('transactionsService', () => {
                 eventType: 'TRANSFER',
                 narration: 'Transfer to vendor',
                 transactionDate: '2026-07-08T08:00:00.000Z',
-                customer: { name: 'Acme Ltd' },
+                customer: {
+                  name: 'Acme Ltd',
+                },
               },
             ],
-            pagination: { total: 1, page: 1, limit: 20, totalPages: 1 },
+            pagination: {
+              total: 1,
+              page: 1,
+              limit: 20,
+              totalPages: 1,
+            },
           },
         }),
       }),
     )
 
-    const result = await transactionsService.getTransactions({ page: 1, limit: 20 })
+    const result = await transactionsService.getTransactions({
+      page: 1,
+      limit: 20,
+    })
 
     expect(result.transactions).toHaveLength(1)
-    expect(result.transactions[0].direction).toBe('OUT')
     expect(result.pagination.total).toBe(1)
+    expect(result.transactions[0]!.direction).toBe('OUT')
   })
 })
