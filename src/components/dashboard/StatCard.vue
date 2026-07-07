@@ -1,59 +1,29 @@
 <template>
   <div
-    class="group relative overflow-hidden rounded-[28px] border border-[#ECE6E2] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(0,0,0,.08)]">
-    <!-- Decorative Gradient -->
-    <div class="absolute right-0 top-0 h-24 w-24 rounded-full opacity-10 blur-2xl" :style="{ background: color }" />
-
-    <!-- Header -->
-    <div class="flex items-center justify-between">
-
-      <div class="flex h-12 w-12 items-center justify-center rounded-2xl" :style="{
-        background: `${color}15`,
-        color
-      }">
-        <component :is="icon" :size="22" />
-      </div>
-
-      <div class="flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold"
-        :class="trend >= 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-500'">
-        <TrendingUp v-if="trend >= 0" :size="14" />
-
-        <TrendingDown v-else :size="14" />
-
-        {{ Math.abs(trend) }}%
-      </div>
-
-    </div>
-
-    <!-- Title -->
-
-    <p class="mt-6 text-sm text-neutral-500">
+    class="group relative overflow-hidden rounded-[24px] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(0,0,0,.05)] border border-black/5"
+    :style="{ backgroundColor: bgColor || '#fff' }">
+    <!-- Label -->
+    <p class="text-sm font-medium text-neutral-600/90 tracking-tight">
       {{ title }}
     </p>
 
     <!-- Value -->
-
-    <h2 class="mt-2 text-4xl font-bold tracking-tight text-neutral-900">
+    <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-neutral-900">
       {{ value }}
     </h2>
 
-    <!-- Footer -->
-
-    <div class="mt-6 flex items-center justify-between">
-
-      <span class="text-sm text-neutral-500">
-        Compared to yesterday
-      </span>
-
-      <!-- Sparkline -->
-
-      <svg width="80" height="30" viewBox="0 0 80 30">
-        <polyline fill="none" :stroke="color" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-          points="0,22 10,18 20,20 30,14 40,16 50,10 60,12 70,6 80,8" />
-      </svg>
-
+    <!-- Trend Indicator / Subtext if present -->
+    <div class="mt-4 flex items-center justify-between">
+      <div v-if="trend !== undefined && trend !== 0" class="flex items-center gap-1 text-xs font-semibold"
+        :class="trend >= 0 ? 'text-emerald-700' : 'text-rose-600'">
+        <TrendingUp v-if="trend >= 0" :size="14" />
+        <TrendingDown v-else :size="14" />
+        {{ Math.abs(trend) }}% vs yesterday
+      </div>
+      <div v-else class="text-xs text-neutral-500 font-medium">
+        Realtime insight
+      </div>
     </div>
-
   </div>
 </template>
 
@@ -66,9 +36,11 @@ import {
 interface Props {
   title: string
   value: string
-  trend: number
-  color: string
-  icon: any
+  trend?: number
+  color?: string
+  bgColor?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon?: any
 }
 
 defineProps<Props>()

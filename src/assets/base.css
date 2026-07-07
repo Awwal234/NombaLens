@@ -19,6 +19,21 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  /* Awesome UI Theme Colors */
+  --au-accent: #7a003deb;
+  --au-accent-dark: #7A003C;
+  --au-accent-light: #E8F6FC;
+  --au-bg: #EFF4FA;
+  --au-bg-soft: #F5F8FC;
+  --au-card: #ffffff;
+  --au-border: #E2EAF2;
+  --au-text-primary: #1A2332;
+  --au-text-secondary: #6B7B8D;
+  --au-mint: #B5E8D5;
+  --au-sand: #F5DEB3;
+  --au-lavender: #D8D0F0;
+  --au-blue-soft: #C5E4F7;
 }
 
 /* semantic color variables for this project */
@@ -59,28 +74,28 @@
 body {
   min-height: 100vh;
   background: linear-gradient(180deg,
-      #FFFFFF 0%,
-      #FEFAF7 30%,
-      #FBF3EC 70%,
-      #F8EEE8 100%);
+      #EFF4FA 0%,
+      #E8EFF8 30%,
+      #EDF3FA 70%,
+      #F5F8FC 100%);
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  zoom: 0.9;
+  zoom: 0.8;
 }
 
 body::-webkit-scrollbar {
   scrollbar-gutter: stable;
   width: 2px;
-  background-color: #fff;
+  background-color: #F5F8FC;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #22000F;
+  background-color: #2CA5D6;
   border-radius: 2px;
 }
 
 body::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #EFF4FA;
 }

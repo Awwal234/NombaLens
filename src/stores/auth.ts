@@ -33,7 +33,12 @@ export const useAuthStore = defineStore('auth', () => {
     localStorage.removeItem('refreshToken')
   }
 
-  const register = async (data: { businessName: string; phone: string; subAccountId: string; pin: string }) => {
+  const register = async (data: {
+    businessName: string
+    phone: string
+    subAccountId: string
+    pin: string
+  }) => {
     const response = await authService.register(data)
     if (response.success && response.data) {
       setTokens(response.data.accessToken, response.data.refreshToken)
@@ -49,6 +54,23 @@ export const useAuthStore = defineStore('auth', () => {
       merchant.value = response.data.merchant
     }
     return response
+  }
+
+  const refreshAccessToken = async () => {
+    if (!refreshToken.value) return null
+
+    try {
+      const response = await authService.refresh(refreshToken.value)
+      if (response.success && response.data) {
+        setTokens(response.data.accessToken, response.data.refreshToken)
+        return response.data.accessToken
+      }
+    } catch (e) {
+      console.error('Failed to refresh token', e)
+      clearAuth()
+    }
+
+    return null
   }
 
   const logout = async () => {
@@ -84,7 +106,8 @@ export const useAuthStore = defineStore('auth', () => {
     register,
     login,
     logout,
+    refreshAccessToken,
     fetchProfile,
-    clearAuth
+    clearAuth,
   }
 })

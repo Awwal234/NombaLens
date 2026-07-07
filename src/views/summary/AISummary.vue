@@ -2,13 +2,12 @@
   <DashboardLayout>
     <div class="space-y-6 max-w-5xl mx-auto py-6">
       <div class="flex items-center gap-2 mb-2">
-        <h1 class="text-3xl font-bold text-gray-800">AI Summary</h1>
-        <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded-md">BETA</span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-neutral-900">AI Summary</h1>
+        <span class="bg-[var(--au-accent-light)] text-[var(--au-accent)] text-[10px] font-bold px-2 py-0.5 rounded-md">BETA</span>
       </div>
-      <p class="text-gray-500 mb-8">Get AI-powered insights and recommendations for your business.</p>
+      <p class="text-sm font-medium text-neutral-500 mb-8">Get AI-powered insights and recommendations for your business.</p>
       <div class="hidden">
         <SummaryFilters @generate="handleGenerate" :isGenerating="isGenerating" />
-
         <SummaryOutput :state="summaryState" :filters="filters" />
       </div>
 
@@ -34,6 +33,5 @@ const handleGenerate = (payload: null) => {
   isGenerating.value = true
   summaryState.value = 'loading'
   filters.value = payload
-  // The SummaryOutput component will react to filters change and fetch data.
 }
 </script>

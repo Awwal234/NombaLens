@@ -1,19 +1,19 @@
 <template>
-  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 flex flex-col mt-8">
+  <div class="bg-white rounded-[24px] border border-[var(--au-border)] p-6 md:p-8 flex flex-col mt-8 shadow-sm">
     <div class="flex items-center justify-between mb-6">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center text-xl">
+        <div class="w-10 h-10 bg-[var(--au-accent-light)] text-[var(--au-accent)] rounded-full flex items-center justify-center text-xl">
           💬
         </div>
         <div>
-          <h3 class="text-xl font-bold text-gray-800">Ask AI</h3>
-          <p class="text-sm text-gray-500">Ask any questions about your financial data</p>
+          <h3 class="text-xl font-bold text-neutral-900 tracking-tight">Ask AI</h3>
+          <p class="text-xs font-medium text-neutral-400">Ask any questions about your financial data</p>
         </div>
       </div>
 
       <!-- Clear Chat Button -->
       <button v-if="messages.length > 0" @click="clearChat"
-        class="text-sm cursor-pointer font-medium text-gray-500 hover:text-red-500 bg-gray-50 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5"
+        class="text-xs cursor-pointer font-bold text-neutral-500 hover:text-red-500 bg-neutral-50 hover:bg-red-50 px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5"
         title="Clear conversation">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -27,48 +27,47 @@
     <!-- Chat History -->
     <div class="flex-1 min-h-[200px] max-h-[400px] overflow-y-auto mb-6 space-y-4 pr-2 custom-scrollbar">
       <div v-if="messages.length === 0"
-        class="flex flex-col items-center justify-center h-full text-gray-400 italic opacity-80 animate-fade-in">
+        class="flex flex-col items-center justify-center h-full text-neutral-400 italic opacity-85 animate-fade-in font-medium text-sm py-12">
         <span class="text-3xl mb-2">✨</span>
         Ask a question to get started...
       </div>
 
-      <!--  -->
+      <!-- Messages -->
       <div v-for="(msg, index) in messages" :key="index" class="flex flex-col animate-fade-in"
         :class="msg.role === 'user' ? 'items-end' : 'items-start'">
-        <div class="max-w-[85%] rounded-2xl px-5 py-3 text-sm md:text-base" :class="msg.role === 'user'
-          ? 'bg-purple-600 text-white rounded-tr-sm'
-          : 'bg-gray-50 text-gray-800 border border-gray-100 rounded-tl-sm'
+        <div class="max-w-[85%] rounded-[20px] px-5 py-3 text-sm md:text-base font-medium" :class="msg.role === 'user'
+          ? 'bg-[var(--au-accent)] text-white rounded-tr-sm shadow-sm shadow-[var(--au-accent)]/10'
+          : 'bg-neutral-50 text-neutral-800 border border-neutral-100 rounded-tl-sm'
           ">
           <div v-if="msg.role === 'ai'" class="mb-2 flex items-center gap-2">
-            <span class="text-xs font-bold text-purple-600">
+            <span class="text-xs font-bold text-[var(--au-accent)]">
               ✨ AI Assistant
             </span>
           </div>
 
           <!-- User -->
-          <p v-if="msg.role === 'user'" class="whitespace-pre-wrap">
+          <p v-if="msg.role === 'user'" class="whitespace-pre-wrap leading-relaxed">
             {{ msg.content }}
           </p>
 
           <!-- AI -->
-          <div v-else class="whitespace-pre-wrap leading-7
-             [&_h1]:mb-3 [&_h1]:text-xl [&_h1]:font-bold
-             [&_h2]:mb-2 [&_h2]:text-lg [&_h2]:font-semibold
-             [&_h3]:mb-2 [&_h3]:font-semibold
-             [&_strong]:font-semibold
+          <div v-else class="whitespace-pre-wrap leading-relaxed
+             [&_h1]:mb-3 [&_h1]:text-xl [&_h1]:font-extrabold [&_h1]:text-neutral-900
+             [&_h2]:mb-2 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:text-neutral-900
+             [&_h3]:mb-2 [&_h3]:font-bold [&_h3]:text-neutral-900
+             [&_strong]:font-bold [&_strong]:text-neutral-950
              [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5
              [&_li]:mb-1" v-html="formatAIMessage(msg.content)" />
         </div>
       </div>
-      <!--  -->
 
       <!-- Loading indicator -->
       <div v-if="isTyping" class="flex flex-col items-start animate-fade-in">
-        <div class="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm px-5 py-4">
+        <div class="bg-neutral-50 border border-neutral-100 rounded-[20px] rounded-tl-sm px-5 py-4">
           <div class="flex gap-1.5">
-            <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
-            <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
-            <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce"></div>
+            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
+            <div class="w-2 h-2 bg-[var(--au-accent)]/60 rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
           </div>
         </div>
       </div>
@@ -78,10 +77,10 @@
     <form @submit.prevent="sendMessage" class="relative flex items-end gap-2">
       <div class="relative flex-1">
         <textarea v-model="inputQuery" rows="1" placeholder="e.g., Why did expenses increase last week?"
-          class="w-full bg-gray-50 border border-gray-200 text-gray-800 py-3.5 pl-5 pr-12 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 focus:bg-white transition-all resize-none overflow-hidden block"
+          class="w-full bg-neutral-50 border border-neutral-200/80 text-neutral-800 py-3.5 pl-5 pr-12 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[var(--au-accent)]/20 focus:border-[var(--au-accent)] focus:bg-white transition-all resize-none overflow-hidden block font-medium text-sm"
           @keydown.enter.prevent="sendMessage"></textarea>
         <button type="button"
-          class="absolute right-3 bottom-2.5 p-1.5 text-gray-400 hover:text-purple-600 transition-colors"
+          class="absolute right-3 bottom-2.5 p-1.5 text-neutral-400 hover:text-[var(--au-accent)] transition-colors"
           title="Voice input">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,7 +90,7 @@
         </button>
       </div>
       <button type="submit" :disabled="!inputQuery.trim() || isTyping"
-        class="bg-purple-600 cursor-pointer hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white p-3.5 rounded-2xl transition-all active:scale-95 flex items-center justify-center shrink-0 shadow-sm">
+        class="bg-[var(--au-accent)] cursor-pointer hover:bg-[var(--au-accent-dark)] disabled:bg-neutral-200 disabled:text-neutral-400 disabled:cursor-not-allowed text-white p-3.5 rounded-2xl transition-all active:scale-95 flex items-center justify-center shrink-0 shadow-sm shadow-[var(--au-accent)]/10">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8">
           </path>
@@ -101,11 +100,11 @@
 
     <div class="mt-3 flex flex-wrap gap-2">
       <button @click="setInput('What are my top selling items?')"
-        class="text-xs bg-gray-50 hover:bg-purple-50 text-gray-600 hover:text-purple-700 border border-gray-100 px-3 py-1.5 rounded-full transition-colors">
+        class="text-xs bg-neutral-50 hover:bg-[var(--au-accent-light)] text-neutral-600 hover:text-[var(--au-accent)] border border-neutral-100 px-3 py-1.5 rounded-full transition-colors font-bold">
         What are my top selling items?
       </button>
       <button @click="setInput('How can I reduce expenses?')"
-        class="text-xs bg-gray-50 hover:bg-purple-50 text-gray-600 hover:text-purple-700 border border-gray-100 px-3 py-1.5 rounded-full transition-colors">
+        class="text-xs bg-neutral-50 hover:bg-[var(--au-accent-light)] text-neutral-600 hover:text-[var(--au-accent)] border border-neutral-100 px-3 py-1.5 rounded-full transition-colors font-bold">
         How can I reduce expenses?
       </button>
     </div>
@@ -156,38 +155,10 @@ onMounted(() => {
   const accessToken = localStorage.getItem('accessToken') || ''
   const host = import.meta.env.VITE_API_HOST || 'https://nombalens-backend.onrender.com' // fallback
 
-  // Load previous chat history
-  // const loadHistory = async () => {
-  //   try {
-  //     const res = await fetch(`${host}/api/v1/ai/history?limit=50`, {
-  //       headers: { Authorization: `Bearer ${accessToken}` },
-  //     })
-  //     if (res.ok) {
-  //       const json = await res.json()
-  //       if (json.success && Array.isArray(json.data)) {
-  //         // Map server response to Message format
-  //         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //         messages.value = json.data.map((item: any) => ({
-  //           role: item.role === 'assistant' ? 'ai' : 'user',
-  //           // The API returns "message" for user and "content" for assistant
-  //           content: (item.role === 'assistant' ? item.content : item.message) || '',
-  //         }))
-  //       }
-  //     } else {
-  //       console.warn('Failed to fetch chat history', res.status)
-  //     }
-  //   } catch (e) {
-  //     console.error('Error fetching chat history', e)
-  //   }
-  // }
-
-  // loadHistory()
-
   // Initialize Socket.IO client
   socket = io(host, {
     path: '/api/v1/ai/chat',
     auth: { token: accessToken },
-    // fallback query token if needed
     query: { token: accessToken },
   })
 
@@ -202,7 +173,6 @@ onMounted(() => {
     if (data.content) {
       messages.value.push({ role: 'ai', content: data.content })
     } else if (data.message) {
-      // handle error messages gracefully
       messages.value.push({ role: 'ai', content: `Error: ${data.message}` })
     }
   })
@@ -222,7 +192,6 @@ const sendMessage = () => {
     socket.emit('ai', { message: query })
   } else {
     console.warn('Socket not connected, falling back to local simulation')
-    // Optional fallback simulation
     setTimeout(() => {
       isTyping.value = false
       messages.value.push({ role: 'ai', content: 'Connection error. Please try again.' })
@@ -262,11 +231,11 @@ const clearChat = () => {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
+  background: #e2eaf2;
   border-radius: 4px;
 }
 
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #cbd5e1;
 }
 </style>

@@ -1,159 +1,106 @@
 <template>
-  <section
-    class="relative overflow-hidden rounded-[32px] bg-gradient-to-br from-[#7A003C] via-[#8C114D] to-[#6D5EF7] p-8 text-white shadow-[0_30px_80px_rgba(122,0,60,.25)]">
-    <!-- Decorative -->
-    <div class="absolute -right-24 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-
-    <div class="absolute -bottom-20 left-1/3 h-56 w-56 rounded-full bg-white/10 blur-3xl" />
-
-    <div class="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-      <!-- Left -->
-
-      <div class="max-w-2xl">
-
-        <span class="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm backdrop-blur">
-          ✨ AI Financial Copilot
-        </span>
-
-        <h1 class="mt-6 text-4xl font-bold leading-tight md:text-5xl">
-          {{ greeting }}, {{ name }} 👋
+  <div class="mb-10">
+    <!-- Header Row -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-4xl font-extrabold tracking-tight text-neutral-900">
+          Dashboard
         </h1>
-
-        <p class="mt-4 max-w-xl text-lg leading-8 text-white/80">
-          {{ summary }}
+        <p class="text-sm font-medium text-neutral-500 mt-1">
+          Welcome back, {{ name }}
         </p>
-
-        <!-- display account number, account name and bank name -->
-        <div class="mt-6 flex flex-wrap items-center gap-4">
-
-          <!-- Account Number -->
-          <div
-            class="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
-              🏦
-            </div>
-
-            <div>
-              <p class="text-xs text-white/60">
-                Account Number
-              </p>
-
-              <p class="font-semibold tracking-wider">
-                {{ accountNumber }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Account Name -->
-          <div
-            class="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
-              👤
-            </div>
-
-            <div>
-              <p class="text-xs text-white/60">
-                Account Name
-              </p>
-
-              <p class="font-semibold">
-                {{ accountName }}
-              </p>
-            </div>
-          </div>
-
-          <!-- Bank -->
-          <div
-            class="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 backdrop-blur-xl">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
-              🏛
-            </div>
-
-            <div>
-              <p class="text-xs text-white/60">
-                Bank
-              </p>
-
-              <p class="font-semibold">
-                {{ bankName }}
-              </p>
-            </div>
-          </div>
-
-        </div>
-        <!--  -->
-
-
-        <div class="mt-8 flex flex-wrap gap-4 hidden">
-
-          <button class="rounded-2xl bg-white px-6 py-3 font-semibold text-[#7A003C] transition hover:scale-[1.03]">
-            Ask AI
-          </button>
-
-          <button
-            class="rounded-2xl border border-white/20 bg-white/10 px-6 py-3 font-semibold backdrop-blur transition hover:bg-white/20">
-            View Insights
-          </button>
-
-        </div>
-
       </div>
 
-      <!-- Right -->
-
-      <div class="rounded-[28px] border border-white/10 bg-white/10 p-6 backdrop-blur-xl lg:w-[320px]">
-        <p class="text-sm text-white/70">
-          Today
-        </p>
-
-        <h2 class="mt-2 text-4xl font-bold">
-          {{ todayRevenue }}
-        </h2>
-
-        <div class="mt-6 flex items-center justify-between rounded-2xl bg-white/10 p-4">
-          <div>
-
-            <p class="text-sm text-white/70">
-              Business Health
-            </p>
-
-            <p class="mt-2 text-3xl font-bold">
-              {{ health }}%
-            </p>
-
-          </div>
-
-          <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/20 text-2xl">
-            💚
-          </div>
-
-        </div>
-
-        <div class="mt-6">
-
-          <div class="mb-2 flex justify-between text-sm">
-
-            <span>Health Score</span>
-
-            <span>{{ health }}%</span>
-
-          </div>
-
-          <div class="h-2 overflow-hidden rounded-full bg-white/15">
-            <div class="h-full rounded-full bg-emerald-400 transition-all duration-700"
-              :style="{ width: `${health}%` }" />
-          </div>
-
-        </div>
-
+      <!-- Action Button -->
+      <div>
+        <button @click="$emit('send-money')"
+          class="flex items-center gap-2 rounded-xl bg-[var(--au-accent)] px-5 py-3 text-sm font-bold text-white shadow-md shadow-[var(--au-accent)]/20 hover:bg-[var(--au-accent-dark)] transition cursor-pointer">
+          <PlusCircle :size="18" />
+          SEND MONEY
+        </button>
       </div>
-
     </div>
-  </section>
+
+    <!-- Info Section & settlement card -->
+    <div class="grid gap-6 lg:grid-cols-3">
+      <!-- Left Welcome / Summary panel -->
+      <div
+        class="lg:col-span-2 flex flex-col justify-between p-6 bg-white rounded-[24px] border border-[var(--au-border)] shadow-sm">
+        <div>
+          <span
+            class="inline-flex items-center gap-1.5 rounded-full bg-[var(--au-accent-light)] px-3.5 py-1.5 text-xs font-semibold text-[var(--au-accent)]">
+            ✨ AI Insights
+          </span>
+          <p class="mt-4 text-base md:text-lg leading-relaxed text-neutral-700 font-medium">
+            "{{ summary }}"
+          </p>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-[var(--au-border)] flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Today's Revenue</p>
+            <p class="text-2xl font-black text-neutral-900 mt-1">{{ todayRevenue }}</p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="text-right">
+              <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Business Health</p>
+              <p class="text-xl font-bold text-neutral-900 mt-1">{{ health }}%</p>
+            </div>
+            <div class="h-10 w-24 overflow-hidden rounded-full bg-neutral-100 flex items-center p-1">
+              <div class="h-full rounded-full bg-emerald-500 transition-all duration-700"
+                :style="{ width: `${health}%` }" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Settlement Account Card (Figma Credit Card style) -->
+      <div
+        class="relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#7A003C] via-[#c4387eb1] to-[#c10563] p-6 text-white shadow-[0_15px_40px_rgba(44,165,214,0.15)] flex flex-col justify-between min-h-[220px]">
+        <div class="relative z-10 mb-4 flex items-start justify-between gap-2">
+          <div>
+            <p class="text-[9px] text-white/60 tracking-wider uppercase font-semibold">Available Balance</p>
+            <p class="text-2xl font-black mt-1">{{ formatCurrency(balanceAmount) }}</p>
+          </div>
+          <span class="rounded-full bg-white/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider">
+            {{ balanceCurrency }}
+          </span>
+        </div>
+        <!-- Card background pattern decoration -->
+        <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+        <div class="absolute -bottom-16 -left-16 h-36 w-36 rounded-full bg-white/10 blur-2xl" />
+
+        <div class="relative z-10 flex items-center justify-between">
+          <span class="text-sm font-bold tracking-wider opacity-90">Settlement Card</span>
+          <!-- Bank Icon / Logo placeholder -->
+          <span class="text-xl font-black italic tracking-tighter opacity-80">{{ bankName || 'BANK' }}</span>
+        </div>
+
+        <div class="relative z-10 my-6">
+          <p class="text-[10px] text-white/60 tracking-wider uppercase font-semibold">Account Number</p>
+          <p class="text-xl md:text-2xl font-bold tracking-widest mt-1">
+            {{ formatAccountNumber(accountNumber) }}
+          </p>
+        </div>
+
+        <div class="relative z-10 flex items-end justify-between">
+          <div>
+            <p class="text-[9px] text-white/60 tracking-wider uppercase font-semibold">Account Name</p>
+            <p class="text-sm font-bold mt-0.5 truncate max-w-[180px]">{{ accountName || name }}</p>
+          </div>
+          <!-- Card circular accent -->
+          <div class="flex -space-x-2 opacity-80">
+            <div class="w-8 h-8 rounded-full bg-red-500/90" />
+            <div class="w-8 h-8 rounded-full bg-amber-500/95" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { PlusCircle } from "lucide-vue-next";
 
 interface Props {
   name?: string;
@@ -163,23 +110,36 @@ interface Props {
   accountNumber?: string;
   accountName?: string;
   bankName?: string;
+  balanceAmount?: number;
+  balanceCurrency?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  name: "Muh-Awwal",
-  todayRevenue: "₦245,300",
-  health: 94,
-  summary:
-    "Revenue is up 14% compared to yesterday. AI recommends increasing inventory before the weekend based on current sales trends.",
+withDefaults(defineProps<Props>(), {
+  name: "Merchant",
+  todayRevenue: "₦0",
+  health: 100,
+  summary: "No summaries today. Transactions are functioning properly.",
+  accountNumber: "",
+  accountName: "",
+  bankName: "",
+  balanceAmount: 0,
+  balanceCurrency: "NGN"
 });
 
-const greeting = computed(() => {
-  const hour = new Date().getHours();
+defineEmits(['send-money']);
 
-  if (hour < 12) return "Good morning";
+const formatCurrency = (value?: number) => {
+  if (typeof value !== "number" || Number.isNaN(value)) return "₦0";
+  return new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", maximumFractionDigits: 0 }).format(value);
+};
 
-  if (hour < 17) return "Good afternoon";
-
-  return "Good evening";
-});
+const formatAccountNumber = (num?: string) => {
+  if (!num) return "**** ****";
+  // Format as groups of 4 digits if possible
+  const cleaned = num.replace(/\s+/g, '');
+  if (cleaned.length === 10) {
+    return `${cleaned.slice(0, 3)} ${cleaned.slice(3, 6)} ${cleaned.slice(6)}`;
+  }
+  return cleaned;
+};
 </script>
