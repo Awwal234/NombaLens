@@ -4,7 +4,7 @@ import { useLinkTo } from "@/helper/linkto";
 const { linkTo } = useLinkTo();
 
 const goWatchDemo = (e: Event) => {
-  window.open('https://player.cloudinary.com/embed/?cloud_name=drxgewgtj&public_id=Screencast_from_2026-07-03_00-41-24_jclplh', '_blank');
+  window.open('https://www.loom.com/share/38a89c3f05774695b548fe3924184f7a', '_blank');
   e.stopPropagation();
 };
 </script>
